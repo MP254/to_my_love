@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+  </head>
+
+  <script>
+    document.addEventListener('click', function (e) {
+      const colors = ['#ff69b4', '#ff417d', '#ff0000', '#ff8c00', '#ffcc00', '#00e5ff', '#c04bff'];
+
+      for (let i = 0; i < 8; i++) { // 👈 Tạo nhiều trái tim hơn
+        const heart = document.createElement("div");
+        heart.className = "click-heart";
+        heart.style.left = `${e.clientX}px`;
+        heart.style.top = `${e.clientY}px`;
+
+        // Random vị trí bay
+        const dx = (Math.random() - 0.5) * 80;
+        const dy = -Math.random() * 60;
+        heart.style.setProperty('--dx', `${dx}px`);
+        heart.style.setProperty('--dy', `${dy}px`);
+
+        // 💖 Random màu
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        heart.style.setProperty('--heart-color', color);
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 1000);
+      }
+    });
+  </script>
+
+
+
+  <body>
+    <!-- <audio autoplay="autopaly">
+      <source src="music/River_Flows_in_You.mp3" type="audio/mp3" />
+    </audio> -->
+    <!-- 星空html -->
+    <!-- <div> -->
+    <div class="container2">
+      <div class="content">
+        <canvas id="universe"></canvas>
+      </div>
+    </div>
+    <!-- </div> -->
+    <div class="title">
+      <!-- EDIT HERE -->
+      <h3 class="STARDUST1">M -2025- L</h3>
+      <!-- <h1 class="STARDUST2">QM &amp; DL</h1> -->
+      <h1 class="STARDUST2">HAPPY BIRTHDAY TO YOU</h1>
+      <h3 class="STARDUST3">L O V E <strong>❤</strong> Y O U</h3>
+      <img id="slideshow" class="img" src="images/A.JPG" alt="slideshow" />
+      <canvas id="pinkboard"></canvas>
+    </div>
+
+    <audio id="bg-music" loop>
+      <source src="music/River_Flows_in_You.mp3" type="audio/mpeg">
+      Trình duyệt của bạn không hỗ trợ phát nhạc.
+    </audio>
+
+    <script>
+      const music = document.getElementById("bg-music");
+
+      // phát nhạc khi user click lần đầu
+      document.addEventListener("click", () => {
+        music.play().then(() => {
+          console.log("Nhạc đang phát...");
+        }).catch(err => {
+          console.log("Không phát được nhạc:", err);
+        });
+      }, { once: true });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+      const images = ['images/A1.JPG', 'images/A2.JPG', 'images/A3.JPEG', 'images/A4.JPEG', 'images/A5.JPG', 'images/A6.JPG', 'images/A7.JPG',
+        'images/A8.JPG', 'images/A9.JPEG', 'images/A10.JPEG', 'images/A11.JPEG', 'images/A12.JPEG'];
+      let current = 0;
+      const imgElement = document.getElementById("slideshow");
+
+      setInterval(() => {
+        // Fade out
+        imgElement.style.opacity = 0;
+
+        setTimeout(() => {
+          // Change image
+          current = (current + 1) % images.length;
+          imgElement.src = images[current];
+
+          // Fade in
+          imgElement.style.opacity = 1;
+        }, 500); // Đợi 1s trước khi đổi ảnh (khớp với CSS)
+      }, 4000); // Mỗi ảnh hiển thị trong 5 giây
+    </script>
+
+    <script src="js/main.js"></script>
+    <script src="js/particle.js"></script>
+    <script src="js/universe.js"></script>
+
+  </body>
+</html>
